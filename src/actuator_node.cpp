@@ -15,12 +15,12 @@ class Actuator : public rclcpp::Node
         Actuator()
         : Node("actuator"), can(new CANbus)
         {
-            ref_subscriber_ = this->create_subscription<stewart_interfaces_pkg::msg::LegsLenVel>(
+            ref_subscriber_ = this->create_subscription<stewart_interfaces::msg::LegsLenVel>(
                 "leg_ref", 1, std::bind(&Actuator::actuate_callback, this, _1));
             
             RCLCPP_INFO(this->get_logger(), "Actuator Node running! Subscribed to 'leg_ref' topic.");
 
-            feedback_publisher_ = this->create_publisher<stewart_interfaces_pkg::msg::LegsLen>(
+            feedback_publisher_ = this->create_publisher<stewart_interfaces::msg::LegsLen>(
                 "leg_feedback", 10);
             
             RCLCPP_INFO(this->get_logger(), "Publishing feedback-data on 'leg_feedback' topic.");
@@ -32,7 +32,7 @@ class Actuator : public rclcpp::Node
         }
 
     private:
-        void actuate_callback(const stewart_interfaces_pkg::msg::LegsLenVel::SharedPtr msg) const
+        void actuate_callback(const stewart_interfaces::msg::LegsLenVel::SharedPtr msg) const
         {
             float len[6];
             float vel[6];
@@ -45,7 +45,7 @@ class Actuator : public rclcpp::Node
             
             float* feedback_ptr = can->send_data(len, vel);
             
-            auto feedback_msg = stewart_interfaces_pkg::msg::LegsLen();
+            auto feedback_msg = stewart_interfaces::msg::LegsLen();
 
             for (uint8_t i = 0; i < 6; i++)
             {
@@ -55,8 +55,8 @@ class Actuator : public rclcpp::Node
             feedback_publisher_->publish(feedback_msg);
         }
         CANbus* can;
-        rclcpp::Subscription<stewart_interfaces_pkg::msg::LegsLenVel>::SharedPtr ref_subscriber_;
-        rclcpp::Publisher<stewart_interfaces_pkg::msg::LegsLen>::SharedPtr feedback_publisher_;
+        rclcpp::Subscription<stewart_interfaces::msg::LegsLenVel>::SharedPtr ref_subscriber_;
+        rclcpp::Publisher<stewart_interfaces::msg::LegsLen>::SharedPtr feedback_publisher_;
 };
 
 int main(int argc, char * argv[])
