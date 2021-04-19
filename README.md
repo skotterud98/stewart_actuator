@@ -5,7 +5,7 @@ Submodule of Stewart-Platform2021 repository (https://github.com/skotterud98/Ste
 
 *****************************************************************************************************************
 
-ROS2 package for the Stewart Platform project at University of Agder, Mechatronics.
+ROS2 package for the Stewart Platform BSc. project at University of Agder, Mechatronics.
 
 
 This package includes ROS nodes which deales with the linear actuators. As of this years project this is through
