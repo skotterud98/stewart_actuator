@@ -1,4 +1,10 @@
 # stewart_actuator
+*****************************************************************************************************************'
+
+Submodule of Stewart-Platform2021 repository.
+
+*****************************************************************************************************************'
+
 ROS2 package for the Stewart Platform project at University of Agder, Mechatronics.
 
 
