@@ -1,7 +1,7 @@
 # stewart_actuator
 *****************************************************************************************************************
 
-Submodule of Stewart-Platform2021 repository.
+Submodule of Stewart-Platform2021 repository (https://github.com/skotterud98/Stewart-Platform2021).
 
 *****************************************************************************************************************
 
